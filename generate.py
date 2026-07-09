@@ -4,7 +4,7 @@ from store import collection
 client = genai.Client()  # reads GEMINI_API_KEY from env automatically
 
 
-def ask(question, n_results=3):
+def ask(question, n_results=8):
     # Step A: retrieve — unchanged from Step 3
     results = collection.query(
         query_texts=[question],
@@ -31,10 +31,12 @@ QUESTION:
 ANSWER:"""
 
     # Step C: generate — this is the only part that changed
+    print("→ Sending request to Gemini...", flush=True)
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt,
     )
+    print("→ Got response back.", flush=True)
 
     answer = response.text
 

@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 chroma_db/
 .env
+appgene-main/
+Arrshwebproject-main/
+InterviewQ-main/

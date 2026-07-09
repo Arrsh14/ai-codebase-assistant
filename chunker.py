@@ -21,21 +21,45 @@ SKIP_DIRS = {".git", "node_modules", "venv", "__pycache__", ".idea", ".vscode"}
 # Specific junk files to skip even if their extension looks fine
 SKIP_FILES = {".DS_Store", ".gitignore"}
 
-
 def chunk_text(text: str, chunk_size: int = 400, overlap: int = 80):
-    """Split text into overlapping chunks of roughly chunk_size characters."""
+    """
+    Split text into overlapping chunks of roughly chunk_size characters,
+    snapping BOTH the start and end of each chunk to nearby newlines so
+    we never cut a line of code (or a word) in half.
+    """
     chunks = []
     start = 0
     text_len = len(text)
 
     while start < text_len:
         end = min(start + chunk_size, text_len)
+
+        if end < text_len:
+            last_newline = text.rfind("\n", start, end)
+            if last_newline > start + (chunk_size // 3):
+                end = last_newline
+
         chunk = text[start:end].strip()
         if chunk:
             chunks.append(chunk)
-        start += chunk_size - overlap
+
+        if end >= text_len:
+            break
+
+        # calculate the raw next start point (with overlap)
+        next_start = end - overlap
+
+        # snap the START forward to the next newline after next_start,
+        # so the new chunk begins on a clean line instead of mid-word
+        if next_start > start:
+            newline_after = text.find("\n", next_start)
+            if newline_after != -1 and newline_after < end:
+                next_start = newline_after + 1  # +1 to skip the \n itself
+
+        start = next_start
 
     return chunks
+
 
 
 def load_and_chunk_folder(folder_path: str):
