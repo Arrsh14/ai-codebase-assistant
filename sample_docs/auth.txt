@@ -1,0 +1,6 @@
+Authentication in this system works using JSON Web Tokens (JWT).
+When a user logs in with their email and password, the server verifies
+the password hash using bcrypt. If the credentials are valid, the server
+generates a signed JWT containing the user's ID and role, and returns it
+to the client. The middleware function verifyToken checks the JWT
+signature and expiration before allowing access to protected routes.

@@ -1,0 +1,3 @@
+The application uses PostgreSQL as its primary database. Connections are
+managed through a connection pool with a maximum of 20 concurrent
+connections. The main tables are users, orders, and products.

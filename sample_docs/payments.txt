@@ -1,0 +1,3 @@
+Payment processing is handled through the Stripe API. The backend
+creates a PaymentIntent using a token from the frontend and confirms
+the charge server-side. Webhooks update the order status.
