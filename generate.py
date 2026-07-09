@@ -1,20 +1,39 @@
 from google import genai
 from store import collection
 
-client = genai.Client()  # reads GEMINI_API_KEY from env automatically
+try:
+    client = genai.Client()  # reads GEMINI_API_KEY from env automatically
+except Exception as e:
+    print(f"⚠️ Could not initialize Gemini client. Is GEMINI_API_KEY set? ({e})")
+    client = None
 
 
 def ask(question, n_results=8):
-    # Step A: retrieve — unchanged from Step 3
-    results = collection.query(
-        query_texts=[question],
-        n_results=n_results,
-    )
+    if not question or not question.strip():
+        return "⚠️ Please enter a non-empty question."
 
-    chunks = results["documents"][0]
-    sources = [meta["source"] for meta in results["metadatas"][0]]
+    if client is None:
+        return "⚠️ Gemini client isn't set up — check your GEMINI_API_KEY."
 
-    # Step B: build a grounded prompt — unchanged logic
+    # Step A: retrieve
+    try:
+        results = collection.query(
+            query_texts=[question],
+            n_results=n_results,
+        )
+    except Exception as e:
+        return f"⚠️ Error retrieving from the vector store: {e}"
+
+    documents = results.get("documents", [[]])
+    metadatas = results.get("metadatas", [[]])
+
+    if not documents or not documents[0]:
+        return "⚠️ No relevant chunks were found for this question. Try rephrasing, or check that the repo was indexed correctly."
+
+    chunks = documents[0]
+    sources = [meta["source"] for meta in metadatas[0]]
+
+    # Step B: build a grounded prompt
     context = "\n\n".join(
         f"[From {src}]\n{chunk}" for src, chunk in zip(sources, chunks)
     )
@@ -30,15 +49,18 @@ QUESTION:
 
 ANSWER:"""
 
-    # Step C: generate — this is the only part that changed
-    print("→ Sending request to Gemini...", flush=True)
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-    )
-    print("→ Got response back.", flush=True)
+    # Step C: generate
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt,
+        )
+        answer = response.text
+    except Exception as e:
+        return f"⚠️ Error generating an answer from Gemini: {e}"
 
-    answer = response.text
+    if not answer:
+        return "⚠️ Gemini returned an empty response. Try again."
 
     print(f"\nQUESTION: {question}")
     print(f"\nANSWER:\n{answer}")
@@ -53,4 +75,6 @@ if __name__ == "__main__":
         question = input("Ask a question: ")
         if question.lower() in ("quit", "exit"):
             break
-        ask(question)
+        result = ask(question)
+        if result and result.startswith("⚠️"):
+            print(result)

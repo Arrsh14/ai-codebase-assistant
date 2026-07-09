@@ -45,6 +45,6 @@ def query_store(question, n_results=2):
         print(doc[:200], "...")
 
 if __name__ == "__main__":
-    build_store(folder="Arrshwebproject-main")
+    build_store(folder="microblog-main")
     print("\n=== Test query ===")
-    query_store("how does the event registration form work?")
+    query_store("how does user login work?")
