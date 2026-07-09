@@ -44,8 +44,7 @@ def query_store(question, n_results=2):
         print(f"\n--- from {meta['source']} (distance={dist:.4f}) ---")
         print(doc[:200], "...")
 
-
 if __name__ == "__main__":
-    build_store()
+    build_store(folder="Arrshwebproject-main")
     print("\n=== Test query ===")
-    query_store("how does login work?")
+    query_store("how does the event registration form work?")

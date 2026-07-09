@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Atma, serif;
+    background: #c0c0c0;
+}
+
+
+header {
+    
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a40; /* Navy Blue Background */
+    color: #ffd700; /* Gold Font */
+    padding: 15px 0 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 10vh;
+}
+
+/* Title - Center Align */
+h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Home Button */
+nav .btn {
+    text-decoration: none;
+    color: gold;
+    font-size: 18px;
+    font-weight: bold;
+    background: none;
+    border: 2px solid gold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    margin-right: 50px; /* Moves it slightly left */
+}
+
+nav .btn:hover {
+    background: #ffd700;
+    color: #1A1A40;
+}
+
+/* Gallery Section */
+.gallery {
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Box Container */
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+/* Individual Box */
+.box {
+    width: calc(25% - 15px); /* 4 cards per row */
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+/* Ensure all images have the same aspect ratio */
+.box img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensures images fill the box while keeping their aspect ratio */
+    border-radius: 10px;
+}
+
+/* Title */
+.box .title {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Icons */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icons a {
+    color: #333;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.icons a:hover {
+    color: #ff5733;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .box {
+        width: calc(33.33% - 15px); /* 3 per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: calc(50% - 15px); /* 2 per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        width: 100%; /* 1 per row */
+    }
+}

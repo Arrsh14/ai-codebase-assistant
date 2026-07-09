@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="Eventregistration.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Event Registration</h2>
+        <form id="registerForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <input type="tel" id="phonenumber" placeholder="Your Phone Number" required pattern="[0-9]{10}" title="Enter a valid 10-digit phone number">
+            <button type="submit">Register</button>  <!-- Register Button -->
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get input values
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let phonenumber = document.getElementById('phonenumber').value;
+
+            // Validate phone number
+            if (!/^\d{10}$/.test(phonenumber)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+
+            // Save details to localStorage
+            let userData = {
+                name: name,
+                email: email,
+                phonenumber: phonenumber
+            };
+
+            localStorage.setItem('eventRegistration', JSON.stringify(userData));
+
+            // Show success message
+            document.getElementById('message').innerText = "Registration successful! Redirecting...";
+
+            // Redirect to thanks.html after 2 seconds
+            setTimeout(function() {
+                window.location.href = "thanks.html";
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

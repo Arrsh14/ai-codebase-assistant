@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="EventO.css"/>
+</head>
+<body>
+
+    <!-- Header with Home Navigation -->
+    <header>
+        <h1>Organize Your Event</h1>
+        <nav>
+            <a href="..\Landing\index.html" class="btn">Home</a>  <!-- Home Button -->
+        </nav>
+    </header>
+
+    <div class="registration-container">
+        <h2>Event Registration Form</h2>
+        <form action="#" method="POST">
+            
+            <div class="form-group">
+                <label for="event-name">Event Name</label>
+                <input type="text" id="event-name" name="event-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="organizer-name">Organizer Name</label>
+                <input type="text" id="organizer-name" name="organizer-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="event-date" name="event-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="event-time">Event Time</label>
+                <input type="time" id="event-time" name="event-time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="venue">Venue/Location</label>
+                <input type="text" id="venue" name="venue" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Event Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Entertainment">Entertainment</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="poster">Upload Event Poster</label>
+                <input type="file" id="poster" name="poster" accept="image/*">
+            </div>
+
+            <a href="..\EventOrganiser\thanks.html" class="btn">Register Now</a>
+                
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
+body {
+    font-family: Atma, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #c0c0c0;
+}
+
+.heading {
+    text-align: center;
+    font-size:  4 rem;
+    margin-top: 20px;
+    color: #333;
+}
+
+.events-container {
+    display: flex;
+    flex-wrap: wrap; /* Responsive Layout */
+    gap: 15px;
+    justify-content: center; /* Centers the cards */
+    padding: 20px;
+}
+
+.event-card {
+    width: 25%; /* Smaller width to fit better */
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+/* Proper Image Display */
+.event-card img {
+    width: 100%;
+    height: 180px; /* Adjusted for a better aspect ratio */
+    object-fit: cover;
+    border-bottom: 3px solid #ddd;
+}
+
+.event-info {
+    padding: 10px;
+}
+
+.event-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.event-info p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Hover Effect */
+.event-card:hover {
+    transform: scale(1.04);
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 1024px) { /* Tablets */
+    .event-card {
+        width: 40%; /* Two cards per row */
+    }
+
+    .event-card img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile screens */
+    .event-card {
+        width: 90%; /* One card per row */
+    }
+
+    .event-card img {
+        height: 150px;
+    }
+}

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #C0C0C0;
+    font-family: 'Atma', serif;
+    margin: 0;
+}
+
+.thank-you-box {
+    background: #1A1A40;
+    padding: 70px 70px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.thank-you-box:hover {
+    transform: scale(1.05);
+}
+
+.thank-you-box h1 {
+    color: #FFD700;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
