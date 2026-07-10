@@ -2,7 +2,7 @@
 
 A Retrieval-Augmented Generation (RAG) tool that lets you ask natural-language questions about any codebase and get accurate, grounded answers with source citations — instead of manually digging through files.
 
-## What it does
+## What it does to the project?
 
 Point it at any code repository and ask things like:
 - "Where is authentication implemented?"
