@@ -63,4 +63,4 @@ Built as a learning project to understand RAG systems end-to-end — chunking, e
 - Support for additional LLM providers
 
 Made By->Arrsh Tripathi
-23BCI0191
+23BCI0191 (Vellore Institute of Technology)
